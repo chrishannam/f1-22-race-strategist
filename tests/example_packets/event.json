@@ -1,0 +1,66 @@
+{
+  "header": {
+    "packet_format": 2021,
+    "game_major_version": 1,
+    "game_minor_version": 12,
+    "packet_version": 1,
+    "packet_id": 3,
+    "session_uid": 12158528324812051775,
+    "session_time": 0.325,
+    "frame_identifier": 14,
+    "player_car_index": 19,
+    "secondary_player_car_index": 255
+  },
+  "event_string_code": [
+    66,
+    85,
+    84,
+    78
+  ],
+  "event_details": {
+    "fastest_lap": {
+      "vehicle_idx": 4,
+      "lap_time": 0.0
+    },
+    "retirement": {
+      "vehicle_idx": 4
+    },
+    "team_mate_in_pits": {
+      "vehicle_idx": 4
+    },
+    "race_winner": {
+      "vehicle_idx": 4
+    },
+    "penalty": {
+      "penalty_type": 4,
+      "infringement_type": 0,
+      "vehicle_idx": 0,
+      "other_vehicle_idx": 0,
+      "time": 3,
+      "lap_num": 0,
+      "places_gained": 0
+    },
+    "speed_trap": {
+      "vehicle_idx": 4,
+      "speed": 0.0,
+      "overall_fastest_in_session": 0,
+      "driver_fastest_in_session": 0
+    },
+    "start_lights": {
+      "num_lights": 4
+    },
+    "drive_through_penalty_served": {
+      "vehicle_idx": 4
+    },
+    "stop_go_penalty_served": {
+      "vehicle_idx": 4
+    },
+    "flashback": {
+      "flashback_frame_identifier": 4,
+      "flashback_session_time": 0.0
+    },
+    "buttons": {
+      "button_status": 4
+    }
+  }
+}

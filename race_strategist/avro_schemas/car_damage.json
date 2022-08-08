@@ -1,0 +1,150 @@
+{
+    "doc": "Car Damage.",
+    "name": "CarDamage",
+    "namespace": "F12021",
+    "type": "record",
+    "fields": [
+        {
+            "name": "header",
+            "type": {
+                "name": "header",
+                "type": "record",
+                "fields": [
+                    {
+                        "name": "packet_format",
+                        "type": "int"
+                    },
+                    {
+                        "name": "game_major_version",
+                        "type": "int"
+                    },
+                    {
+                        "name": "game_minor_version",
+                        "type": "int"
+                    },
+                    {
+                        "name": "packet_version",
+                        "type": "int"
+                    },
+                    {
+                        "name": "packet_id",
+                        "type": "int"
+                    },
+                    {
+                        "name": "session_uid",
+                        "type": "long"
+                    },
+                    {
+                        "name": "session_time",
+                        "type": "float"
+                    },
+                    {
+                        "name": "frame_identifier",
+                        "type": "int"
+                    },
+                    {
+                        "name": "player_car_index",
+                        "type": "int"
+                    },
+                    {
+                        "name": "secondary_player_car_index",
+                        "type": "int"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "car_damage_data",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "car_damage_data_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "tyres_wear",
+                            "type": {
+                                "type": "array",
+                                "items": "float"
+                            }
+                        },
+                        {
+                            "name": "tyres_damage",
+                            "type": {
+                                "type": "array",
+                                "items": "int"
+                            }
+                        },
+                        {
+                            "name": "brakes_damage",
+                            "type": {
+                                "type": "array",
+                                "items": "int"
+                            }
+                        },
+                        {
+                            "name": "front_left_wing_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "front_right_wing_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "rear_wing_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "floor_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "diffuser_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "sidepod_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "drs_fault",
+                            "type": "int"
+                        },
+                        {
+                            "name": "gear_box_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "engine_damage",
+                            "type": "int"
+                        },
+                        {
+                            "name": "engine_mguhwear",
+                            "type": "int"
+                        },
+                        {
+                            "name": "engine_eswear",
+                            "type": "int"
+                        },
+                        {
+                            "name": "engine_cewear",
+                            "type": "int"
+                        },
+                        {
+                            "name": "engine_icewear",
+                            "type": "int"
+                        },
+                        {
+                            "name": "engine_mgukwear",
+                            "type": "int"
+                        },
+                        {
+                            "name": "engine_tcwear",
+                            "type": "int"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

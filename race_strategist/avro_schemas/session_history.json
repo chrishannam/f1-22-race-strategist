@@ -1,0 +1,140 @@
+{
+  "name": "Session History",
+  "type": "record",
+  "namespace": "F12021",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "car_idx",
+      "type": "int"
+    },
+    {
+      "name": "num_laps",
+      "type": "int"
+    },
+    {
+      "name": "num_tyre_stints",
+      "type": "int"
+    },
+    {
+      "name": "best_lap_time_lap_num",
+      "type": "int"
+    },
+    {
+      "name": "best_sector1_lap_num",
+      "type": "int"
+    },
+    {
+      "name": "best_sector2_lap_num",
+      "type": "int"
+    },
+    {
+      "name": "best_sector3_lap_num",
+      "type": "int"
+    },
+    {
+      "name": "lap_history_data",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "lap_history_data_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "lap_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "sector1_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "sector2_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "sector3_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "lap_valid_bit_flags",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tyre_stints_history_data",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "tyre_stints_history_data_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "end_lap",
+              "type": "int"
+            },
+            {
+              "name": "tyre_actual_compound",
+              "type": "int"
+            },
+            {
+              "name": "tyre_visual_compound",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

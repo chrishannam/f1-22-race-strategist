@@ -1,0 +1,108 @@
+{
+  "name": "Participants",
+  "type": "record",
+  "namespace": "F12021",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "num_active_cars",
+      "type": "int"
+    },
+    {
+      "name": "participants",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "participants_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "ai_controlled",
+              "type": "int"
+            },
+            {
+              "name": "driver_id",
+              "type": "int"
+            },
+            {
+              "name": "network_id",
+              "type": "int"
+            },
+            {
+              "name": "team_id",
+              "type": "int"
+            },
+            {
+              "name": "my_team",
+              "type": "int"
+            },
+            {
+              "name": "race_number",
+              "type": "int"
+            },
+            {
+              "name": "nationality",
+              "type": "int"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "your_telemetry",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

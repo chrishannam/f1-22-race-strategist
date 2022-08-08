@@ -1,0 +1,215 @@
+{
+  "name": "Motion",
+  "type": "record",
+  "namespace": "F12021",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "car_motion_data",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "car_motion_data_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "world_position_x",
+              "type": "float"
+            },
+            {
+              "name": "world_position_y",
+              "type": "float"
+            },
+            {
+              "name": "world_position_z",
+              "type": "float"
+            },
+            {
+              "name": "world_velocity_x",
+              "type": "float"
+            },
+            {
+              "name": "world_velocity_y",
+              "type": "float"
+            },
+            {
+              "name": "world_velocity_z",
+              "type": "float"
+            },
+            {
+              "name": "world_forward_dir_x",
+              "type": "int"
+            },
+            {
+              "name": "world_forward_dir_y",
+              "type": "int"
+            },
+            {
+              "name": "world_forward_dir_z",
+              "type": "int"
+            },
+            {
+              "name": "world_right_dir_x",
+              "type": "int"
+            },
+            {
+              "name": "world_right_dir_y",
+              "type": "int"
+            },
+            {
+              "name": "world_right_dir_z",
+              "type": "int"
+            },
+            {
+              "name": "g_force_lateral",
+              "type": "float"
+            },
+            {
+              "name": "g_force_longitudinal",
+              "type": "float"
+            },
+            {
+              "name": "g_force_vertical",
+              "type": "float"
+            },
+            {
+              "name": "yaw",
+              "type": "float"
+            },
+            {
+              "name": "pitch",
+              "type": "float"
+            },
+            {
+              "name": "roll",
+              "type": "float"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "suspension_position",
+      "type": {
+        "type": "array",
+        "items": "float"
+      }
+    },
+    {
+      "name": "suspension_velocity",
+      "type": {
+        "type": "array",
+        "items": "float"
+      }
+    },
+    {
+      "name": "suspension_acceleration",
+      "type": {
+        "type": "array",
+        "items": "float"
+      }
+    },
+    {
+      "name": "wheel_speed",
+      "type": {
+        "type": "array",
+        "items": "float"
+      }
+    },
+    {
+      "name": "wheel_slip",
+      "type": {
+        "type": "array",
+        "items": "float"
+      }
+    },
+    {
+      "name": "local_velocity_x",
+      "type": "float"
+    },
+    {
+      "name": "local_velocity_y",
+      "type": "float"
+    },
+    {
+      "name": "local_velocity_z",
+      "type": "float"
+    },
+    {
+      "name": "angular_velocity_x",
+      "type": "float"
+    },
+    {
+      "name": "angular_velocity_y",
+      "type": "float"
+    },
+    {
+      "name": "angular_velocity_z",
+      "type": "float"
+    },
+    {
+      "name": "angular_acceleration_x",
+      "type": "float"
+    },
+    {
+      "name": "angular_acceleration_y",
+      "type": "float"
+    },
+    {
+      "name": "angular_acceleration_z",
+      "type": "float"
+    },
+    {
+      "name": "front_wheels_angle",
+      "type": "double"
+    }
+  ]
+}

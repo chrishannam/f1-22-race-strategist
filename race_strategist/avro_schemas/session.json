@@ -1,0 +1,264 @@
+{
+  "name": "Session",
+  "type": "record",
+  "namespace": "F12021",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "weather",
+      "type": "int"
+    },
+    {
+      "name": "track_temperature",
+      "type": "int"
+    },
+    {
+      "name": "air_temperature",
+      "type": "int"
+    },
+    {
+      "name": "total_laps",
+      "type": "int"
+    },
+    {
+      "name": "track_length",
+      "type": "int"
+    },
+    {
+      "name": "session_type",
+      "type": "int"
+    },
+    {
+      "name": "track_id",
+      "type": "int"
+    },
+    {
+      "name": "formula",
+      "type": "int"
+    },
+    {
+      "name": "session_time_left",
+      "type": "int"
+    },
+    {
+      "name": "session_duration",
+      "type": "int"
+    },
+    {
+      "name": "pit_speed_limit",
+      "type": "int"
+    },
+    {
+      "name": "game_paused",
+      "type": "int"
+    },
+    {
+      "name": "is_spectating",
+      "type": "int"
+    },
+    {
+      "name": "spectator_car_index",
+      "type": "int"
+    },
+    {
+      "name": "sli_pro_native_support",
+      "type": "int"
+    },
+    {
+      "name": "num_marshal_zones",
+      "type": "int"
+    },
+    {
+      "name": "marshal_zones",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "marshal_zones_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "zone_start",
+              "type": "float"
+            },
+            {
+              "name": "zone_flag",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "safety_car_status",
+      "type": "int"
+    },
+    {
+      "name": "network_game",
+      "type": "int"
+    },
+    {
+      "name": "num_weather_forecast_samples",
+      "type": "int"
+    },
+    {
+      "name": "weather_forecast_samples",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "weather_forecast_samples_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "session_type",
+              "type": "int"
+            },
+            {
+              "name": "time_offset",
+              "type": "int"
+            },
+            {
+              "name": "weather",
+              "type": "int"
+            },
+            {
+              "name": "track_temperature",
+              "type": "int"
+            },
+            {
+              "name": "track_temperature_change",
+              "type": "int"
+            },
+            {
+              "name": "air_temperature",
+              "type": "int"
+            },
+            {
+              "name": "air_temperature_change",
+              "type": "int"
+            },
+            {
+              "name": "rain_percentage",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "forecast_accuracy",
+      "type": "int"
+    },
+    {
+      "name": "ai_difficulty",
+      "type": "int"
+    },
+    {
+      "name": "season_link_identifier",
+      "type": "long"
+    },
+    {
+      "name": "weekend_link_identifier",
+      "type": "long"
+    },
+    {
+      "name": "session_link_identifier",
+      "type": "long"
+    },
+    {
+      "name": "pit_stop_window_ideal_lap",
+      "type": "int"
+    },
+    {
+      "name": "pit_stop_window_latest_lap",
+      "type": "int"
+    },
+    {
+      "name": "pit_stop_rejoin_position",
+      "type": "int"
+    },
+    {
+      "name": "steering_assist",
+      "type": "int"
+    },
+    {
+      "name": "braking_assist",
+      "type": "int"
+    },
+    {
+      "name": "gearbox_assist",
+      "type": "int"
+    },
+    {
+      "name": "pit_assist",
+      "type": "int"
+    },
+    {
+      "name": "pit_release_assist",
+      "type": "int"
+    },
+    {
+      "name": "ersassist",
+      "type": "int"
+    },
+    {
+      "name": "drsassist",
+      "type": "int"
+    },
+    {
+      "name": "dynamic_racing_line",
+      "type": "int"
+    },
+    {
+      "name": "dynamic_racing_line_type",
+      "type": "int"
+    }
+  ]
+}

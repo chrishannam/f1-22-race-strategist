@@ -1,0 +1,106 @@
+{
+    "doc": "Car Damage.",
+    "name": "CarDamage",
+    "namespace": "F12021",
+    "type": "record",
+    "fields": [
+        {
+            "name": "header",
+            "type": {
+                "name": "header",
+                "type": "record",
+                "fields": [
+                    {
+                        "name": "packet_format",
+                        "type": "int"
+                    },
+                    {
+                        "name": "game_major_version",
+                        "type": "int"
+                    },
+                    {
+                        "name": "game_minor_version",
+                        "type": "int"
+                    },
+                    {
+                        "name": "packet_version",
+                        "type": "int"
+                    },
+                    {
+                        "name": "packet_id",
+                        "type": "int"
+                    },
+                    {
+                        "name": "session_uid",
+                        "type": "long"
+                    },
+                    {
+                        "name": "session_time",
+                        "type": "float"
+                    },
+                    {
+                        "name": "frame_identifier",
+                        "type": "int"
+                    },
+                    {
+                        "name": "player_car_index",
+                        "type": "int"
+                    },
+                    {
+                        "name": "secondary_player_car_index",
+                        "type": "int"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "num_cars",
+            "type": "int"
+          },
+        {
+            "name": "classification_data",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "classification_data_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "position",
+                            "type": {
+                                "type": "array",
+                                "items": "int"
+                            }
+                        },
+                        {
+                            "name": "num_laps",
+                            "type": {
+                                "type": "array",
+                                "items": "int"
+                            }
+                        },
+                        {
+                            "name": "grid_position",
+                            "type": {
+                                "type": "array",
+                                "items": "int"
+                            }
+                        },
+                        {
+                            "name": "points",
+                            "type": "int"
+                        },
+                        {
+                            "name": "num_pit_stops",
+                            "type": "int"
+                        },
+                        {
+                            "name": "result_status",
+                            "type": "int"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,156 @@
+{
+  "name": "Setup",
+  "type": "record",
+  "namespace": "F12021",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "car_setups",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "car_setups_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "front_wing",
+              "type": "int"
+            },
+            {
+              "name": "rear_wing",
+              "type": "int"
+            },
+            {
+              "name": "on_throttle",
+              "type": "int"
+            },
+            {
+              "name": "off_throttle",
+              "type": "int"
+            },
+            {
+              "name": "front_camber",
+              "type": "float"
+            },
+            {
+              "name": "rear_camber",
+              "type": "float"
+            },
+            {
+              "name": "front_toe",
+              "type": "float"
+            },
+            {
+              "name": "rear_toe",
+              "type": "float"
+            },
+            {
+              "name": "front_suspension",
+              "type": "int"
+            },
+            {
+              "name": "rear_suspension",
+              "type": "int"
+            },
+            {
+              "name": "front_anti_roll_bar",
+              "type": "int"
+            },
+            {
+              "name": "rear_anti_roll_bar",
+              "type": "int"
+            },
+            {
+              "name": "front_suspension_height",
+              "type": "int"
+            },
+            {
+              "name": "rear_suspension_height",
+              "type": "int"
+            },
+            {
+              "name": "brake_pressure",
+              "type": "int"
+            },
+            {
+              "name": "brake_bias",
+              "type": "int"
+            },
+            {
+              "name": "rear_left_tyre_pressure",
+              "type": "float"
+            },
+            {
+              "name": "rear_right_tyre_pressure",
+              "type": "float"
+            },
+            {
+              "name": "front_left_tyre_pressure",
+              "type": "float"
+            },
+            {
+              "name": "front_right_tyre_pressure",
+              "type": "float"
+            },
+            {
+              "name": "ballast",
+              "type": "int"
+            },
+            {
+              "name": "fuel_load",
+              "type": "float"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

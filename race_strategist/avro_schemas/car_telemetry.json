@@ -1,0 +1,159 @@
+{
+  "name": "CarTelemetry",
+  "type": "record",
+  "namespace": "F12021",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "car_telemetry_data",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "car_telemetry_data_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "speed",
+              "type": "int"
+            },
+            {
+              "name": "throttle",
+              "type": "float"
+            },
+            {
+              "name": "steer",
+              "type": "float"
+            },
+            {
+              "name": "brake",
+              "type": "float"
+            },
+            {
+              "name": "clutch",
+              "type": "int"
+            },
+            {
+              "name": "gear",
+              "type": "int"
+            },
+            {
+              "name": "engine_rpm",
+              "type": "int"
+            },
+            {
+              "name": "drs",
+              "type": "int"
+            },
+            {
+              "name": "rev_lights_percent",
+              "type": "int"
+            },
+            {
+              "name": "rev_lights_bit_value",
+              "type": "int"
+            },
+            {
+              "name": "brakes_temperature",
+              "type": {
+                "type": "array",
+                "items": "int"
+              }
+            },
+            {
+              "name": "tyres_surface_temperature",
+              "type": {
+                "type": "array",
+                "items": "int"
+              }
+            },
+            {
+              "name": "tyres_inner_temperature",
+              "type": {
+                "type": "array",
+                "items": "int"
+              }
+            },
+            {
+              "name": "engine_temperature",
+              "type": "int"
+            },
+            {
+              "name": "tyres_pressure",
+              "type": {
+                "type": "array",
+                "items": "float"
+              }
+            },
+            {
+              "name": "surface_type",
+              "type": {
+                "type": "array",
+                "items": "int"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "mfd_panel_index",
+      "type": "int"
+    },
+    {
+      "name": "mfd_panel_index_secondary_player",
+      "type": "int"
+    },
+    {
+      "name": "suggested_gear",
+      "type": "int"
+    }
+  ]
+}

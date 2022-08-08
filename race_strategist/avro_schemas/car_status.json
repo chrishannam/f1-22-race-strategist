@@ -1,0 +1,160 @@
+{
+  "name": "Car Status",
+  "type": "record",
+  "namespace": "F12021",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "car_status_data",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "car_status_data_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "traction_control",
+              "type": "int"
+            },
+            {
+              "name": "anti_lock_brakes",
+              "type": "int"
+            },
+            {
+              "name": "fuel_mix",
+              "type": "int"
+            },
+            {
+              "name": "front_brake_bias",
+              "type": "int"
+            },
+            {
+              "name": "pit_limiter_status",
+              "type": "int"
+            },
+            {
+              "name": "fuel_in_tank",
+              "type": "float"
+            },
+            {
+              "name": "fuel_capacity",
+              "type": "float"
+            },
+            {
+              "name": "fuel_remaining_laps",
+              "type": "float"
+            },
+            {
+              "name": "max_rpm",
+              "type": "int"
+            },
+            {
+              "name": "idle_rpm",
+              "type": "int"
+            },
+            {
+              "name": "max_gears",
+              "type": "int"
+            },
+            {
+              "name": "drs_allowed",
+              "type": "int"
+            },
+            {
+              "name": "drs_activation_distance",
+              "type": "int"
+            },
+            {
+              "name": "actual_tyre_compound",
+              "type": "int"
+            },
+            {
+              "name": "visual_tyre_compound",
+              "type": "int"
+            },
+            {
+              "name": "tyres_age_laps",
+              "type": "int"
+            },
+            {
+              "name": "vehicle_fia_flags",
+              "type": "int"
+            },
+            {
+              "name": "ers_store_energy",
+              "type": "float"
+            },
+            {
+              "name": "ers_deploy_mode",
+              "type": "int"
+            },
+            {
+              "name": "ers_harvested_this_lap_mguk",
+              "type": "float"
+            },
+            {
+              "name": "ers_harvested_this_lap_mguh",
+              "type": "float"
+            },
+            {
+              "name": "ers_deployed_this_lap",
+              "type": "float"
+            },
+            {
+              "name": "network_paused",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "doc": "Lap reading.",
+  "name": "Lap",
+  "namespace": "F12021",
+  "type": "record",
+  "fields": [
+    {
+      "name": "header",
+      "type": {
+        "name": "header",
+        "type": "record",
+        "fields": [
+          {
+            "name": "packet_format",
+            "type": "int"
+          },
+          {
+            "name": "game_major_version",
+            "type": "int"
+          },
+          {
+            "name": "game_minor_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_version",
+            "type": "int"
+          },
+          {
+            "name": "packet_id",
+            "type": "int"
+          },
+          {
+            "name": "session_uid",
+            "type": "long"
+          },
+          {
+            "name": "session_time",
+            "type": "float"
+          },
+          {
+            "name": "frame_identifier",
+            "type": "int"
+          },
+          {
+            "name": "player_car_index",
+            "type": "int"
+          },
+          {
+            "name": "secondary_player_car_index",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "lap_data",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "lap_data_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "last_lap_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "current_lap_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "sector1_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "sector2_time_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "lap_distance",
+              "type": "float"
+            },
+            {
+              "name": "total_distance",
+              "type": "float"
+            },
+            {
+              "name": "safety_car_delta",
+              "type": "double"
+            },
+            {
+              "name": "car_position",
+              "type": "int"
+            },
+            {
+              "name": "current_lap_num",
+              "type": "int"
+            },
+            {
+              "name": "pit_status",
+              "type": "int"
+            },
+            {
+              "name": "num_pit_stops",
+              "type": "int"
+            },
+            {
+              "name": "sector",
+              "type": "int"
+            },
+            {
+              "name": "current_lap_invalid",
+              "type": "int"
+            },
+            {
+              "name": "penalties",
+              "type": "int"
+            },
+            {
+              "name": "warnings",
+              "type": "int"
+            },
+            {
+              "name": "num_unserved_drive_through_pens",
+              "type": "int"
+            },
+            {
+              "name": "num_unserved_stop_go_pens",
+              "type": "int"
+            },
+            {
+              "name": "grid_position",
+              "type": "int"
+            },
+            {
+              "name": "driver_status",
+              "type": "int"
+            },
+            {
+              "name": "result_status",
+              "type": "int"
+            },
+            {
+              "name": "pit_lane_timer_active",
+              "type": "int"
+            },
+            {
+              "name": "pit_lane_time_in_lane_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "pit_stop_timer_in_ms",
+              "type": "int"
+            },
+            {
+              "name": "pit_stop_should_serve_pen",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+click
+fastavro
+influxdb-client
+flask
+kafka-python
+marshmallow
+pyserial
+f1-22-telemetry
+# gtts
+# pyttsx3
+# keras
+#
+#
+# gluonts[mxnet,pro]
