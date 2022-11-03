@@ -105,7 +105,7 @@ class DataRecorder:
         while True:
             self.process_packet()
 
-    async def process_packet(self):
+    def process_packet(self):
         packet, packet_type = self.feed.get_latest()
         packet_name = packet_type.__name__
 

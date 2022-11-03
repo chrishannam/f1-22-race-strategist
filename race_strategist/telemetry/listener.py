@@ -1,6 +1,6 @@
 import socket
 from typing import Union, Dict
-from telemetry_f1_2021.cleaned_packets import HEADER_FIELD_TO_PACKET_TYPE, PacketHeader
+from f1_22_telemetry.packets import HEADER_FIELD_TO_PACKET_TYPE, PacketHeader
 
 
 class TelemetryFeed:
