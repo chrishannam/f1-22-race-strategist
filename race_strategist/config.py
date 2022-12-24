@@ -44,7 +44,7 @@ class KafkaConfiguration:
 
 @dataclass
 class InfluxDBConfiguration:
-    host: str
+    url: str
     token: str
     org: str
     bucket: str
@@ -77,7 +77,7 @@ def load_config(
 
         if section == 'influxdb':
             recorder_config.influxdb = InfluxDBConfiguration(
-                config[section]['host'],
+                config[section]['url'],
                 config[section]['token'],
                 config[section]['org'],
                 config[section]['bucket'],

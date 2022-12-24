@@ -1,7 +1,7 @@
 from influxdb_client import InfluxDBClient
 from typing import Dict, List
 
-from influxdb_client.client.write_api import ASYNCHRONOUS
+from influxdb_client.client.write_api import SYNCHRONOUS
 
 from race_strategist.config import InfluxDBConfiguration
 from race_strategist.connectors.influxdb.processor import InfluxDBProcessor
@@ -26,14 +26,14 @@ class InfluxDBConnector:
     def connection(self) -> InfluxDBClient:
         if not self._connection:
             self._connection = InfluxDBClient(
-                url=self.config.host, token=self.config.token
+                url=self.config.url, token=self.config.token, org=self.config.org, timeout=30_000
             )
         return self._connection
 
     @property
     def write_api(self):
         if not self._write_api:
-            self._write_api = self.connection.write_api(write_options=ASYNCHRONOUS)
+            self._write_api = self.connection.write_api(write_options=SYNCHRONOUS)
         return self._write_api
 
     def record_pulse(self, reading: Dict):
