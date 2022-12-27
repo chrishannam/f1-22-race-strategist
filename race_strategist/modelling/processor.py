@@ -70,6 +70,10 @@ def process_laps(data: Dict) -> CurrentLaps:
     laps = []
 
     for lap in data['lap_data']:
+        if lap['lap_distance'] < 0:
+            lap['lap_distance'] = 0
+        if lap['total_distance'] < 0:
+            lap['total_distance'] = 0
         lap = Lap(**lap)
         laps.append(lap)
 

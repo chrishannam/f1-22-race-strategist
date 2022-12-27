@@ -1,8 +1,8 @@
-# F1 2021 - The Official Video Game from Codemasters
+# F1 22 - The Official Video Game from Codemasters
 A tool for forwarding the UDP telemetry data from the simulator game F1 2021 to InfluxDB
 for display via any graphing application.
 
-[UDP Specification](https://forums.codemasters.com/topic/80231-f1-2021-udp-specification/)
+The updated F1 22 UDP specification is available [here](https://answers.ea.com/t5/General-Discussion/F1-22-UDP-Specification/td-p/11551274?attachment-id=607611)
 
 # Data Storage
 Is done by [InfluxDB](https://www.influxdata.com/) which is a great time series 

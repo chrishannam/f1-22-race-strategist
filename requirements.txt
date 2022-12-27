@@ -1,6 +1,6 @@
 click
 fastavro
-influxdb-client
+influxdb-client[async]
 flask
 kafka-python
 marshmallow

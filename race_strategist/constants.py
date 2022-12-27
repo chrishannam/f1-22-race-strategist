@@ -3,7 +3,6 @@ More info is available here:
 https://forums.codemasters.com/topic/54423-f1%C2%AE-2020-udp-specification/
 """
 
-
 TYRE_COMPOUND = {
     16: 'C5',  # super soft
     17: 'C4',
@@ -192,6 +191,29 @@ DRIVERS = {
     109: 'Jenson Button',
     110: 'David Coulthard',
     111: 'Nico Rosberg',
+    112: "Oscar Piastri",
+    113: "Liam Lawson",
+    114: "Juri Vips",
+    115: "Theo Pourchaire",
+    116: "Richard Verschoor",
+    117: "Lirim Zendeli",
+    118: "David Beckmann",
+    121: "Alessio Deledda",
+    122: "Bent Viscaal",
+    123: "Enzo Fittipaldi",
+    125: "Mark Webber",
+    126: "Jacques Villenneuve",
+    127: "Jake Hughes",
+    128: "Frederik Vesti",
+    129: "Olli Caldwell",
+    130: "Logan Sargeant",
+    131: "Cem Bölükbasi",
+    132: "Ayumu Iwasa",
+    133: "Clément Novalak",
+    134: "Dennis Hauger",
+    135: "Calan Williams",
+    136: "Jack Doohan",
+    137: "Amaury Cordeel"
 }
 
 TEAMS = {

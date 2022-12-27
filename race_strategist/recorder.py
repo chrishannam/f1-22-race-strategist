@@ -1,6 +1,9 @@
 import logging
 from typing import List, Union
 
+from urllib3.exceptions import ConnectTimeoutError
+from urllib3.exceptions import ReadTimeoutError
+
 from race_strategist.config import RecorderConfiguration
 from race_strategist.connectors.influxdb.connector import InfluxDBConnector
 from race_strategist.connectors.influxdb.processor import InfluxDBProcessor
@@ -61,7 +64,6 @@ class DataRecorder:
     def write_to_influxdb(self, data: List) -> bool:
         if not self.influxdb:
             return False
-
         self.influxdb.write(data)
         return True
 
@@ -128,4 +130,7 @@ class DataRecorder:
             converted = self.influxdb_processor.convert(packet.to_dict(), packet_name)
 
             if converted:
-                self.write_to_influxdb(converted)
+                try:
+                    self.write_to_influxdb(converted)
+                except (ConnectTimeoutError, ReadTimeoutError) as exc:
+                    logger.exception(exc)
