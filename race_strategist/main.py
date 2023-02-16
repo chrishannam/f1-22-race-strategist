@@ -10,7 +10,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
+"""
+OTEL_SERVICE_NAME=your-service-name 
+OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://otelcol.aspecto.io:4317 
+OTEL_EXPORTER_OTLP_HEADERS=Authorization=your-aspecto-api-key-here opentelemetry-instrument python main.py
+"""
 @click.command()
 @click.option("--port", default=20777, help="port to listen on")
 @click.option("--all-drivers", default=True, help="collect all driver data", required=False)

@@ -1,6 +1,8 @@
 import logging
+from random import randint
 from typing import List, Union
 
+from opentelemetry.sdk.trace import TracerProvider
 from urllib3.exceptions import ConnectTimeoutError
 from urllib3.exceptions import ReadTimeoutError
 
@@ -13,6 +15,11 @@ from race_strategist.modelling.processor import process_laps, process_session_hi
 from race_strategist.session.session import Session, Drivers, CurrentLaps
 from race_strategist.telemetry.listener import TelemetryFeed
 
+from opentelemetry import trace
+from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+from opentelemetry.sdk.resources import SERVICE_NAME, Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
 
 logging.basicConfig(
     level=logging.INFO,
@@ -20,6 +27,22 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S',
 )
 logger = logging.getLogger(__name__)
+
+# https://opentelemetry.io/docs/instrumentation/python/getting-started/
+# https://opentelemetry-python.readthedocs.io/en/latest/exporter/jaeger/jaeger.html
+
+trace.set_tracer_provider(
+    TracerProvider(
+        resource=Resource.create({SERVICE_NAME: "Bernie"})
+    )
+)
+tracer = trace.get_tracer(__name__)
+
+jaeger_exporter = JaegerExporter(
+    # configure agent
+    agent_host_name='localhost',
+    agent_port=6831,
+)
 
 
 class DataRecorder:
@@ -103,9 +126,13 @@ class DataRecorder:
         return True
 
     def collect(self):
+        with tracer.start_as_current_span("do_roll") as rollspan:
+            res = randint(1, 6)
+            rollspan.set_attribute("roll.value", res)
+            return res
 
-        while True:
-            self.process_packet()
+        # while True:
+        #     self.process_packet()
 
     def process_packet(self):
         packet, packet_type = self.feed.get_latest()
