@@ -3,6 +3,14 @@ import logging
 
 from race_strategist.config import load_config
 from race_strategist.recorder import DataRecorder
+
+from opentelemetry import trace
+from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+from opentelemetry.sdk.resources import SERVICE_NAME, Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s.%(msecs)03d %(levelname)s: %(message)s',
@@ -26,6 +34,7 @@ jaeger_exporter = JaegerExporter(
     agent_host_name='localhost',
     agent_port=6831,
 )
+
 
 @click.command()
 @click.option("--port", default=20777, help="port to listen on")
