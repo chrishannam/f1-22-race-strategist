@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 trace.set_tracer_provider(
     TracerProvider(
-        resource=Resource.create({SERVICE_NAME: "Bernie"})
+        resource=Resource.create({SERVICE_NAME: "RaceStrategist"})
     )
 )
 tracer = trace.get_tracer(__name__)
@@ -45,7 +45,8 @@ def run(port: int = 20777, all_drivers: bool = None):
     logger.info('Collecting data...')
 
     with tracer.start_as_current_span("fetch_packet") as fetch_packet:
-        packet_name = recorder.collect()
+        # packet_name = recorder.collect()
+        packet_name = "CarTelemetryData"
         fetch_packet.set_attribute("packet.name", packet_name)
 
 
