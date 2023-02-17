@@ -104,8 +104,11 @@ class DataRecorder:
 
     def collect(self):
 
-        while True:
-            self.process_packet()
+        # while True:
+        #     self.process_packet()
+
+        packet, packet_type = self.feed.get_latest()
+        return packet_type
 
     def process_packet(self):
         packet, packet_type = self.feed.get_latest()

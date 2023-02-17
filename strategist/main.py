@@ -43,7 +43,10 @@ def run(port: int = 20777, all_drivers: bool = None):
     config = load_config()
     recorder = DataRecorder(config, port=port, all_drivers=all_drivers)
     logger.info('Collecting data...')
-    recorder.collect()
+
+    with tracer.start_as_current_span("fetch_packet") as fetch_packet:
+        packet_name = recorder.collect()
+        fetch_packet.set_attribute("packet.name", packet_name)
 
 
 if __name__ == "__main__":
