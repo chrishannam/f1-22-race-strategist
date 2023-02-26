@@ -11,8 +11,15 @@ from race_strategist.connectors.influxdb.processor import InfluxDBProcessor
 from race_strategist.connectors.kafka.connector import KafkaConnector
 from race_strategist.modelling.processor import process_laps, process_session_history, process_drivers, \
     process_session
+from race_strategist.otel_helpers import time_method
 from race_strategist.session.session import Session, Drivers, CurrentLaps
 from race_strategist.telemetry.listener import TelemetryFeed
+
+from opentelemetry import trace
+from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+from opentelemetry.sdk.resources import SERVICE_NAME, Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor
 
 
 logging.basicConfig(
@@ -21,6 +28,29 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S',
 )
 logger = logging.getLogger(__name__)
+
+
+# https://opentelemetry.io/docs/instrumentation/python/getting-started/
+# https://opentelemetry-python.readthedocs.io/en/latest/exporter/jaeger/jaeger.html
+
+trace.set_tracer_provider(
+    TracerProvider(
+        resource=Resource.create({SERVICE_NAME: "RaceStrategist"})
+    )
+)
+tracer = trace.get_tracer(__name__)
+
+jaeger_exporter = JaegerExporter(
+    # configure agent
+    agent_host_name='localhost',
+    agent_port=6831,
+)
+
+# Create a BatchSpanProcessor and add the exporter to it
+span_processor = SimpleSpanProcessor(jaeger_exporter)
+
+# add to the tracer
+trace.get_tracer_provider().add_span_processor(span_processor)
 
 
 class DataRecorder:
@@ -112,6 +142,7 @@ class DataRecorder:
         while True:
             self.process_packet()
 
+    @time_method
     def process_packet(self):
         packet, packet_type = self.feed.get_latest()
         packet_name = packet_type.__name__
@@ -140,7 +171,7 @@ class DataRecorder:
                 if converted:
                     try:
                         logger.info('Writing to InfluxDB')
-                        logger.info(json.dumps(packet.to_dict()[self.player_car_index], indent=4))
+                        logger.info(json.dumps(packet.to_dict()["car_telemetry_data"][self.player_car_index], indent=4))
                         self.write_to_influxdb(converted)
                         logger.info('Written to InfluxDB')
                     except (ConnectTimeoutError, ReadTimeoutError) as exc:
