@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 @click.command()
 @click.option("--port", default=20777, help="port to listen on")
-@click.option("--all-drivers", default=True, help="collect all driver data", required=False)
+@click.option("--all-drivers", default=False, help="collect all driver data", required=False)
 def run(port: int = 20777, all_drivers: bool = None):
     config = load_config()
     recorder = DataRecorder(config, port=port, all_drivers=all_drivers)

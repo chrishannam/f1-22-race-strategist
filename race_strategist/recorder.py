@@ -1,3 +1,4 @@
+import json
 import logging
 from typing import List, Union
 
@@ -27,13 +28,15 @@ class DataRecorder:
     _kafka_unavailable: bool = False
     _influxdb: Union[InfluxDBConnector, None] = None
 
+    player_car_index: int = None
+
     session: Union[Session, None] = None
     drivers: Union[Drivers, None] = None
     laps: Union[CurrentLaps, None] = None
     influxdb_processor: Union[InfluxDBProcessor, None] = None
     session_history = {}
 
-    def __init__(self, configuration: RecorderConfiguration, port: int = 20777, all_drivers=True) -> None:
+    def __init__(self, configuration: RecorderConfiguration, port: int = 20777, all_drivers=False) -> None:
         self.configuration: RecorderConfiguration = configuration
         self.feed = TelemetryFeed(port=port)
         self.port = port
@@ -77,8 +80,10 @@ class DataRecorder:
     def prepare_for_processing(self, packet, packet_name) -> bool:
 
         header = packet.header
-
         packet_dict = packet.to_dict()
+
+        if not self.player_car_index:
+            self.player_car_index = header.player_car_index
 
         if not self.session and packet_name == 'PacketSessionData':
             self.session = process_session(packet_dict, header.session_uid)
@@ -119,18 +124,24 @@ class DataRecorder:
         if packet_name == 'PacketLapData':
             self.laps = process_laps(packet.to_dict())
 
-        if self.influxdb:
-            if not self.influxdb_processor:
-                self.influxdb_processor = InfluxDBProcessor(
-                    drivers=self.drivers,
-                    session=self.session,
-                    laps=self.laps,
-                )
-            self.influxdb_processor.update_laps(self.laps)
-            converted = self.influxdb_processor.convert(packet.to_dict(), packet_name)
+        if packet_name == 'PacketCarTelemetryData':
 
-            if converted:
-                try:
-                    self.write_to_influxdb(converted)
-                except (ConnectTimeoutError, ReadTimeoutError) as exc:
-                    logger.exception(exc)
+            if self.influxdb:
+                if not self.influxdb_processor:
+                    self.influxdb_processor = InfluxDBProcessor(
+                        drivers=self.drivers,
+                        session=self.session,
+                        laps=self.laps,
+                        player_car_index=self.player_car_index
+                    )
+                self.influxdb_processor.update_laps(self.laps)
+                converted = self.influxdb_processor.convert(packet.to_dict(), packet_name, self.all_drivers)
+
+                if converted:
+                    try:
+                        logger.info('Writing to InfluxDB')
+                        logger.info(json.dumps(packet.to_dict()[self.player_car_index], indent=4))
+                        self.write_to_influxdb(converted)
+                        logger.info('Written to InfluxDB')
+                    except (ConnectTimeoutError, ReadTimeoutError) as exc:
+                        logger.exception(exc)

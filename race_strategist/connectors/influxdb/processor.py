@@ -7,13 +7,13 @@ from race_strategist.session.session import Driver, CurrentLaps
 
 class InfluxDBProcessor(Processor):
 
-    def convert(self, data: Dict, packet_name: str):
+    def convert(self, data: Dict, packet_name: str, all_drivers: bool = False):
         data_name = packet_name.replace('Packet', '').replace('Data', '').replace('Car', '')
 
         if packet_name in ['PacketCarSetupData', 'PacketMotionData',
                            'PacketCarDamageData', 'PacketCarTelemetryData',
                            'PacketCarStatusData']:
-            return self.extract_car_array_data(packet=data, data_name=data_name)
+            return self.extract_car_array_data(packet=data, data_name=data_name, all_drivers=all_drivers)
         elif packet_name == 'PacketLapData':
             return self._process_laps(laps=data, data_name=data_name)
         elif packet_name == 'PacketSessionData':
@@ -156,7 +156,7 @@ class InfluxDBProcessor(Processor):
 
         return point
 
-    def extract_car_array_data(self, packet: Dict, data_name: str):
+    def extract_car_array_data(self, packet: Dict, data_name: str, all_drivers: bool):
         points = []
 
         lap_number = self.laps.laps[packet['header']['player_car_index']].current_lap_num
@@ -180,33 +180,63 @@ class InfluxDBProcessor(Processor):
                         )
                     )
             elif isinstance(value, list):
-                for idx, data in enumerate(packet[list(packet.keys())[1]]):
-                    if idx >= len(self.drivers.drivers):
-                        continue
+                if all_drivers:
+                    for idx, data in enumerate(packet[list(packet.keys())[1]]):
+                        if idx >= len(self.drivers.drivers):
+                            continue
 
-                    for name, value in data.items():
-                        driver = self.drivers.drivers[idx]
+                        for name, value in data.items():
+                            driver = self.drivers.drivers[idx]
+                            if isinstance(value, list) and len(value) == 4:
+                                for location, corner in enumerate(['rear_left', 'rear_right', 'front_left', 'front_right']):
+                                    points.append(
+                                        self.create_point(
+                                            packet_name=data_name,
+                                            key=name,
+                                            value=value[location],
+                                            tags={'corner': corner},
+                                            lap=lap_number,
+                                            driver=driver,
+                                            team=driver.team_name
+                                        )
+                                    )
+                            elif isinstance(value, list):
+                                pass
+                            else:
+                                points.append(
+                                    self.create_point(
+                                        packet_name=data_name,
+                                        key=name,
+                                        value=value,
+                                        lap=lap_number,
+                                        driver=driver,
+                                        team=driver.team_name
+                                    )
+                                )
+                else:
+                    player_driver = value[self.player_car_index]
+                    for k, v in player_driver.items():
                         if isinstance(value, list) and len(value) == 4:
                             for location, corner in enumerate(['rear_left', 'rear_right', 'front_left', 'front_right']):
                                 points.append(
                                     self.create_point(
                                         packet_name=data_name,
-                                        key=name,
-                                        value=value[location],
+                                        key=k,
+                                        value=v[location],
                                         tags={'corner': corner},
                                         lap=lap_number,
                                         driver=driver,
                                         team=driver.team_name
                                     )
                                 )
-                        elif isinstance(value, list):
+                        elif isinstance(v, list):
                             pass
                         else:
                             points.append(
                                 self.create_point(
                                     packet_name=data_name,
-                                    key=name,
-                                    value=value,
+                                    key=k,
+                                    value=v,
                                     lap=lap_number,
                                     driver=driver,
                                     team=driver.team_name

@@ -6,13 +6,14 @@ from race_strategist.constants import TEAMS, DRIVERS, TRACK_IDS, SESSION_TYPE
 
 
 class Processor(ABC):
-    def __init__(self, session: Session, drivers: Drivers, laps: CurrentLaps):
+    def __init__(self, session: Session, drivers: Drivers, laps: CurrentLaps, player_car_index: int):
         self.session = session
         self.drivers = drivers
         self.laps: CurrentLaps = laps
         self.session_history = {}
         self._leader = None
         self._current_lap = None
+        self.player_car_index = player_car_index
 
     @abstractmethod
     def convert(self, data):
