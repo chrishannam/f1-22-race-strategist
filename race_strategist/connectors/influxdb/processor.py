@@ -2,6 +2,7 @@
 from influxdb_client import Point
 from typing import Dict
 from race_strategist.modelling.processor import Processor
+from race_strategist.otel_helpers import time_method
 from race_strategist.session.session import Driver, CurrentLaps
 
 
@@ -131,6 +132,7 @@ class InfluxDBProcessor(Processor):
                 )
         return points
 
+    @time_method
     def update_laps(self, laps: CurrentLaps):
         self.laps = laps
 

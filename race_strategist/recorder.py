@@ -94,6 +94,7 @@ class DataRecorder:
 
         return self._influxdb
 
+    @time_method
     def write_to_influxdb(self, data: List) -> bool:
         if not self.influxdb:
             return False
@@ -107,6 +108,7 @@ class DataRecorder:
         self.kafka.send(topic, data)
         return True
 
+    @time_method
     def prepare_for_processing(self, packet, packet_name) -> bool:
 
         header = packet.header
