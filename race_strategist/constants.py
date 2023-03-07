@@ -258,4 +258,12 @@ TEAMS = {
     92: 'Haas 2020',
     93: 'McLaren 2020',
     94: 'Alfa Romeo 2020',
+    98: 'Ferrari F8 Tributo',
+    99: 'Ferrari Roma',
+    100: 'McLaren 720S',
+    101: 'McLaren Artura',
+    102: 'Mercedes AMG GT Black Series Safety Car',
+    103: 'Mercedes AMG GTR Pro',
+    104: 'F1 Custom Team',
+
 }

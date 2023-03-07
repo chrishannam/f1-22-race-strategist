@@ -5,7 +5,6 @@ from influxdb_client.client.write_api import ASYNCHRONOUS
 
 from race_strategist.config import InfluxDBConfiguration
 from race_strategist.connectors.influxdb.processor import InfluxDBProcessor
-from race_strategist.otel_helpers import time_method
 
 
 class InfluxDBConnector:
@@ -53,7 +52,6 @@ class InfluxDBConnector:
         #     )
         # influx_conn.write(data)
 
-    @time_method
     def write(self, data: List[str]):
         """
         data = [
