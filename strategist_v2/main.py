@@ -20,9 +20,7 @@ def main():
     recorder = SpeedyDataRecorder(config, port=20777)
 
     while True:
-        logger.info('Collecting data...')
         recorder.update()
-        logger.info('Complete')
 
 
 if __name__ == "__main__":

@@ -17,7 +17,6 @@ logger = logging.getLogger(__name__)
 def run(port: int = 20777, all_drivers: bool = None):
     config = load_config()
     recorder = DataRecorder(config, port=port, all_drivers=all_drivers)
-    logger.info('Collecting data...')
     recorder.collect()
 
 

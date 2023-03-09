@@ -124,9 +124,7 @@ class SpeedyDataRecorder:
 
                 if converted:
                     try:
-                        logger.info('Writing to InfluxDB')
                         self.write_to_influxdb(converted)
-                        logger.info('Written to InfluxDB')
                     except (ConnectTimeoutError, ReadTimeoutError) as exc:
                         logger.exception(exc)
 
